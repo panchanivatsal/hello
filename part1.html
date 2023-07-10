@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td><input type="text" placeholder="Name" id="name"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="email" id="email" placeholder="Email"></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" id="password" placeholder="Password"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="button" onclick="save()">Submit</button></td>
+        </tr>
+        <tbody id="record"></tbody>
+    </table>
+    <script type="text/javascript">
+        let data = [{
+            name: 'vatsal',
+            email: "vatsal@gmail.com",
+            password: '852',
+            role: 'admin'
+        }];
+
+        const save = () => {
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+
+            let obj = {
+                name: name,
+                email: email,
+                password: password,
+                role: 'user'
+            };
+
+            if (data.some(user => user.role === 'admin' && user.email === email && user.password === password)) {
+                document.getElementById('name').value = "";
+                document.getElementById('email').value = "";
+                document.getElementById('password').value = "";
+                alert("Admin login successful!");
+                window.location.href = "index.html"
+            } else {
+                alert("Invalid admin credentials!");
+            }
+        };
+    </script>
+</body>
+
+</html>
